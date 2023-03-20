@@ -7,10 +7,18 @@
  */
 int main(void)
 {
-	int a = 0;
+	int i;
 
-	for (; a < 10 ; a++)
-		printf("%d", a);
+	for (i = 10; i < 20; i++)
+	{
+		putchar((i % 10) + '0');
+		if (i != 19)
+		{
+			putchar(',');
+			putchar(' ');
+		}
+	}
 	putchar('\n');
 	return (0);
 }
+
