@@ -1,33 +1,24 @@
 #include "lists.h"
-
+#include <stdlib.h>
+#include <string.h>
 /**
- * free_list - free linked list
- * @head: linked list
+ * free_list - frees a linked list.
+ * @head: The pointer to the first linked list node
+ * Return: nothing.
  */
-
 void free_list(list_t *head)
 {
-	while (head != NULL)
-	{
-		free(head->str);
-		free(head);
-		head = head->next;
-	}
+
+list_t *current, *next;
+
+current = head;
+
+while (current != NULL)
+{
+	next = current->next;
+	free(current->str);
+	free(current);
+	current = next;
 }
 
-/**
- * another way using temp pointer
- *
- *      list_t *ptr;
- *
- *	if (head == NULL) // account for no linked list
- *		return;
- *
- *	while (head != NULL) // have ptr keep track of head node and free
- *	{
- *		ptr = head;
- *		head = head->next; // move to next node while ptr frees prior
- *		free(ptr->str); // free malloced strings
- *		free(ptr);
- *	}
- */
+}
